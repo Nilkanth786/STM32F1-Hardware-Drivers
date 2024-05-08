@@ -155,35 +155,35 @@ void UART_TX(unsigned short uart,char c)
 if process : Sting to fullfill, cnt , signal 
 */
 
-void UART_ISR(unsigned short uart,unsigned short uart_mgr[], char str[])
-{
-	if(uart_mgr[2] == 0)
-		{
-			str[uart_mgr[0]] = UART_RX(uart);
-			if(uart_mgr[3])
-			{
-						if(str[uart_mgr[0]] == uart_mgr[4])
-						{
-							uart_mgr[0]= 0;
-							uart_mgr[1] = 1;
-						}
-						else
-						{
-							uart_mgr[0]++;
-						}
-				}else
-					{
-						// Timer strategy
-						uart_mgr[0]++;
-						uart_mgr[6] = uart_mgr[5];
-						systick_int_start();
-					}
-		}
-	else
-	{
-		UART_TX(uart_mgr[2],UART_RX(uart));
-	}
-}
+// void UART_ISR(unsigned short uart,unsigned short uart_mgr[], char str[])
+// {
+// 	if(uart_mgr[2] == 0)
+// 		{
+// 			str[uart_mgr[0]] = UART_RX(uart);
+// 			if(uart_mgr[3])
+// 			{
+// 						if(str[uart_mgr[0]] == uart_mgr[4])
+// 						{
+// 							uart_mgr[0]= 0;
+// 							uart_mgr[1] = 1;
+// 						}
+// 						else
+// 						{
+// 							uart_mgr[0]++;
+// 						}
+// 				}else
+// 					{
+// 						// Timer strategy
+// 						uart_mgr[0]++;
+// 						uart_mgr[6] = uart_mgr[5];
+// 						systick_int_start();
+// 					}
+// 		}
+// 	else
+// 	{
+// 		UART_TX(uart_mgr[2],UART_RX(uart));
+// 	}
+// }
 
 void UART_SEND(unsigned short uart, char str[])
 {
